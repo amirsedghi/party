@@ -1,0 +1,81 @@
+<h1>Welcome, <%= @user.first_name%></h1>
+  <a href="/users/<%=@user.id%>">Edit My Profile</a>
+  <div class="row">
+    <div class="col s9 offset-s1">
+      <p>Here are some of the events at your state</p>
+      <table class="striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>City</th>
+            <th>Host</th>
+            <th>Action/Status</th>
+          </tr>
+        </thead>
+        <% @events.each do |event| %>
+        <tr>
+          <td><%= link_to event.name, "/events/#{event.id}"%></td>
+          <td><%= event.date%></td>
+          <td><%= event.city%></td>
+          <td><%= event.first_name%></td>
+          <td>
+            <% if event.user_id == @user.id %>
+            <a href='/events/edit/<%=event.id%>'>Edit</a> |
+              <a href='/events/destroy/<%=event.id%>' data-method="DELETE">Delete </a>
+            <% elsif @attending.include?(event.id) %>
+              Joining
+              <a href='/attendance/destroy/<%=event.id%>' data-confirm="DELETE!?!?! REALLY????" data-method="DELETE">Cancel </a>
+            <% else %>
+              <a href="/events/join/<%=event.id%>" data-method = "post">Join</a></td>
+            <% end %>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col s9 offset-s1">
+        <p>Here are some of the events on the other states:</p>
+        <table class="striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Host</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <% @outer_events.each do |event| %>
+          <tr>
+            <td><%= link_to event.name, "/events/#{event.id}"%></td>
+            <td><%= event.date%></td>
+            <td><%= event.city%></td>
+            <td><%= event.state%></td>
+            <td><%= event.first_name%></td>
+            <td>
+              <% if event.user_id == @user.id %>
+              <a href='/events/edit/<%=event.id%>'>Edit</a> |
+                <a href='/events/destroy/<%=event.id%>' data-confirm="ARE YOU SURE?" data-method="DELETE">Delete </a>
+              <% elsif @attending.include?(event.id) %>
+                Joining
+                <a href='/attendance/destroy/<%=event.id%>' data-method="DELETE">Cancel </a>
+              <% else %>
+                <a href="/events/join/<%=event.id%>" data-method = "post">Join</a></td>
+              <% end %>
+          </tr>
+          <% end %>
+        </table>
+        <h4>Add Event</h4>
+        <form action="/events/create" method="POST">
+          Name: <input type="text" name="name">
+          Date: <input type="date" name="date">
+          City: <input type="text" name="city">
+          State: <input type="text" name="state">
+          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+          <!-- <input type="hidden" name="_method" value="PATCH"> -->
+          <input class="waves-effect waves-light btn" type="submit" value="Add Event">
+        </form>
+      </div>
+  </div>

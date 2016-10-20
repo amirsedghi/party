@@ -1,0 +1,11 @@
+<h4>Edit <%=@user.first_name%>'s Profile</h4>
+  <form action="/users/<%=@user.id%>" method="POST">
+    First Name: <input type="text" name="first_name" value="<%=@user.first_name%>">
+    Last Name: <input type="text" name="last_name" value="<%=@user.last_name%>">
+    Email: <input type="text" name="email" value="<%=@user.email%>">
+    City: <input type="text" name="city" value="<%=@user.city%>">
+    State: <input type="text" name="state" value="<%=@user.state%>">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <input type="hidden" name="_method" value="PATCH">
+    <input class="waves-effect waves-light btn" type="submit" value="Update Profile">
+  </form>

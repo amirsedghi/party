@@ -1,0 +1,11 @@
+<h4>Edit Event</h4>
+  <form action="/events/<%=@event.id%>" method="POST">
+    Name: <input type="text" name="name" value="<%=@event.name%>">
+    Date: <input type="date" name="date" value="<%=@date%>">
+    City: <input type="text" name="city" value="<%=@event.city%>">
+    State: <input type="text" name="state" value="<%=@event.state%>">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <input type="hidden" name="_method" value="PATCH">
+    <input class="waves-effect waves-light btn" type="submit" value="Update Event">
+    <%=link_to "Cancel Update", '/events/index', class: "btn"  %>
+  </form>
