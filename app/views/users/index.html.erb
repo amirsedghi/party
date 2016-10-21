@@ -8,9 +8,9 @@
       <input type="text" name="email" placeholder="Email">
       <input type="text" name="city" placeholder="City">
       <input type="text" name="state" placeholder="State">
-      <input type="text" name="password" placeholder="Password">
+      <input type="password" name="password" placeholder="Password">
       <p> *Password should be at least 8 characters. </p>
-      <input type="text" name="passconf" placeholder="Password Confirmation">
+      <input type="password" name="passconf" placeholder="Password Confirmation">
       <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
       <!-- <input type="hidden" name="_method" value="PATCH"> -->
       <input class="waves-effect waves-light btn" type="submit" value="Register">
@@ -19,7 +19,7 @@
   <div class="col s6">
     <form action="/users/login" method="POST">
       <input type="text" name="email" placeholder="Email">
-      <input type="text" name="password" placeholder="Password">
+      <input type="password" name="password" placeholder="Password">
       <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
       <!-- <input type="hidden" name="_method" value="PATCH"> -->
       <input class="waves-effect waves-light btn" type="submit" value="Login">
